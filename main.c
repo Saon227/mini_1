@@ -1,6 +1,6 @@
 #include "product.h"
 #include "manager.h"
-
+#include <string.h>
 int Menu(){
     int menu;
     printf("\n*** Menu ***\n");
@@ -37,7 +37,8 @@ int loadData(Product *p) // File에서 데이터 불러오는 함수
             fscanf(fp, "%s", p[i].name);
             if(feof(fp)) break;
             fscanf(fp, "%f", &p[i].weight);
-            fscanf(fp, "%d", &p[i].price);
+            p[i].weight = p[i].weight/1000.0; //kg으로 변경
+	    fscanf(fp, "%d", &p[i].price);
             fscanf(fp, "%f", &p[i].star);
             fscanf(fp, "%d", &p[i].star_count);
         }
@@ -62,7 +63,7 @@ void searchName(Product *p, int count) // 제품 이름 검색
         if(p[i].weight == -1) continue;
         if(strstr(p[i].name, name)){
             printf("%2d ", i+1);
-            readScore(p[i]);
+            readProduct(p[i]);
             flag++;
         }
     }
@@ -80,7 +81,7 @@ void searchPrice(Product *p, int count) // 제품 가격대 검색
         if(p[i].weight == -1) continue;
         if(price1<p[i].price && p[i].price<price2){
             printf("%2d ", i+1);
-            readScore(p[i]);
+            readProduct(p[i]);
             flag++;
         }
     }
@@ -89,16 +90,16 @@ void searchPrice(Product *p, int count) // 제품 가격대 검색
 	
 void searchStar(Product *p, int count) // 제품 별점 검색
 {
-    char star;
+    float star;
     int flag=0;
     printf("검색할 별점? (최소치 입력) ");
-    scanf("%d", &star);
+    scanf("%f", &star);
     printf("\n No Name Weight Price Rate RateCount\n================================\n");
     for(int i=0; i<count; i++){
         if(p[i].weight == -1) continue;
         if(p[i].star>star){
             printf("%2d ", i+1);
-            readScore(p[i]);
+            readProduct(p[i]);
             flag++;
         }
     }
