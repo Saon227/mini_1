@@ -62,9 +62,9 @@ int main(){
 #endif
 
     Product p[20];
+    int count = loadData(slist);
+    int index = count; //데이터 번호
     int menu;
-    int index = 0;
-    int count = 0;
 
     while(1){
         menu = Menu();
@@ -73,11 +73,6 @@ int main(){
             printf("저장할 수 있는 최대 인원을 초과하였습니다.\n");
             continue;
         }
-        if(menu==1 || menu==3 || menu==4)
-            if(count==0){
-                printf("저장된 정보가 없습니다.\n");
-                continue;
-            }
         if(menu==2){
             count += createProduct(&p[index++]);
         }
@@ -103,6 +98,9 @@ int main(){
             }
             else printf("취소됨!\n");
         }
+	else if(menu==5){
+	    saveData(p, index);
+	}
     }
     printf("종료됨!\n");
     return 0;
