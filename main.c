@@ -36,9 +36,9 @@ int loadData(Product *p) // File에서 데이터 불러오는 함수
         for(i=0; i<100; i++){
             fscanf(fp, "%s", p[i].name);
             if(feof(fp)) break;
-            fscanf(fp, "%.2f", &p[i].weight);
+            fscanf(fp, "%f", &p[i].weight);
             fscanf(fp, "%d", &p[i].price);
-            fscanf(fp, "%.1f", &p[i].star);
+            fscanf(fp, "%f", &p[i].star);
             fscanf(fp, "%d", &p[i].star_count);
         }
         printf("=> 로딩 성공!\n");
