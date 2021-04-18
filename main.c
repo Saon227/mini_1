@@ -57,7 +57,7 @@ void searchName(Product *p, int count) // 제품 이름 검색
     int flag=0;
     printf("검색할 이름? ");
     scanf("%s", name);
-    printf("\nName Weight Price Rate RateCount\n================================\n");
+    printf("\nNo Name Weight Price Rate RateCount\n================================\n");
     for(int i=0; i<count; i++){
         if(p[i].weight == -1) continue;
         if(strstr(p[i].name, name)){
@@ -69,7 +69,24 @@ void searchName(Product *p, int count) // 제품 이름 검색
     if(flag == 0) printf("=> 검색된 데이터 없음!\n");
 }
 
-void searchPrice(Product *p, int count); // 제품 가격대 검색
+void searchPrice(Product *p, int count) // 제품 가격대 검색
+{
+    int price1, price2;
+    int flag=0;
+    printf("검색할 가격대? (최저 최고 입력)");
+    scanf("%d %d", &price1, &price2);
+    printf("\n No Name Weight Price Rate RateCount\n================================\n");
+    for(int i=0; i<count; i++){
+        if(p[i].weight == -1) continue;
+        if(price1<p[i].price && p[i].price<price2){
+            printf("%2d ", i+1);
+            readScore(p[i]);
+            flag++;
+        }
+    }
+    if(flag == 0) printf("=> 검색된 데이터 없음!\n");
+}
+	
 void searchStar(Product *p, int count); // 제품 별점 검색
 
 int main(){
