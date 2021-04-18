@@ -62,7 +62,7 @@ int main(){
 #endif
 
     Product p[20];
-    int count = loadData(slist);
+    int count = loadData(p);
     int index = count; //데이터 번호
     int menu;
 
