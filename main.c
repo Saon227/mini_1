@@ -16,6 +16,12 @@ int Menu(){
     return menu; 
 }
 
+void saveData(Product *p, int count); // File 저장 함수
+int loadData(Product *p); // File에서 데이터 불러오는 함수
+void searchName(Product *p, int count); // 제품 이름 검색
+void searchPrice(Product *p, int count); // 제품 가격대 검색
+void searchStar(Product *p, int count); // 제품 별점 검색
+
 int main(){
 
 #ifdef DEBUG
