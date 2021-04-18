@@ -16,7 +16,18 @@ int Menu(){
     return menu; 
 }
 
-void saveData(Product *p, int count); // File 저장 함수
+void saveData(Product *p, int count) // File 저장 함수
+{
+    FILE *fp;
+    fp = fopen("data.txt", "wt");
+    for(int i=0; i<count; i++){
+        if(p[i].weight == -1) continue;
+        fprintf(fp, "%s %.2f %d %.1f %d\n", p[i].name, p[i].weight, p[i].price, p[i].star, p[i].star_count);
+    }
+    fclose(fp);
+    printf("=> 저장됨!\n");
+}
+
 int loadData(Product *p); // File에서 데이터 불러오는 함수
 void searchName(Product *p, int count); // 제품 이름 검색
 void searchPrice(Product *p, int count); // 제품 가격대 검색
