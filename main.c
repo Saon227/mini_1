@@ -28,7 +28,29 @@ void saveData(Product *p, int count) // File 저장 함수
     printf("=> 저장됨!\n");
 }
 
-int loadData(Product *p); // File에서 데이터 불러오는 함수
+int loadData(Product *p) // File에서 데이터 불러오는 함수
+{
+    FILE *fp;
+    if(fp = fopen("score.txt", "rt")){
+        int i;
+        for(i=0; i<100; i++){
+            fscanf(fp, "%s", p[i].name);
+            if(feof(fp)) break;
+            fscanf(fp, "%.2f", &p[i].weight);
+            fscanf(fp, "%d", &p[i].price);
+            fscanf(fp, "%.1f", &p[i].star);
+            fscanf(fp, "%d", &p[i].star_count);
+        }
+        printf("=> 로딩 성공!\n");
+        fclose(fp);
+        return i;
+    }
+    else{
+        printf("=> 파일 없음\n");
+        return 0;
+    }
+}
+
 void searchName(Product *p, int count); // 제품 이름 검색
 void searchPrice(Product *p, int count); // 제품 가격대 검색
 void searchStar(Product *p, int count); // 제품 별점 검색
