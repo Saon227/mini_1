@@ -151,6 +151,15 @@ int main(){
 	else if(menu==5){
 	    saveData(p, index);
 	}
+	else if(menu==6){
+            int type;
+            printf("어느 타입으로 검색하시겠습니까?(1: 이름, 2: 가격대, 3: 별점) ");
+            scanf("%d", &type);
+            if(type==1) searchName(p, index);
+            else if(type==2) searchPrice(p, index);
+            else if(type==3) searchStar(p, index);
+            else printf("잘못 입력하셨습니다.\n");
+        }
     }
     printf("종료됨!\n");
     return 0;
