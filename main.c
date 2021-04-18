@@ -31,7 +31,7 @@ void saveData(Product *p, int count) // File 저장 함수
 int loadData(Product *p) // File에서 데이터 불러오는 함수
 {
     FILE *fp;
-    if(fp = fopen("score.txt", "rt")){
+    if(fp = fopen("data.txt", "rt")){
         int i;
         for(i=0; i<100; i++){
             fscanf(fp, "%s", p[i].name);
