@@ -51,7 +51,24 @@ int loadData(Product *p) // File에서 데이터 불러오는 함수
     }
 }
 
-void searchName(Product *p, int count); // 제품 이름 검색
+void searchName(Product *p, int count) // 제품 이름 검색
+{
+    char name[20];
+    int flag=0;
+    printf("검색할 이름? ");
+    scanf("%s", name);
+    printf("\nName Weight Price Rate RateCount\n================================\n");
+    for(int i=0; i<count; i++){
+        if(p[i].weight == -1) continue;
+        if(strstr(p[i].name, name)){
+            printf("%2d ", i+1);
+            readScore(p[i]);
+            flag++;
+        }
+    }
+    if(flag == 0) printf("=> 검색된 데이터 없음!\n");
+}
+
 void searchPrice(Product *p, int count); // 제품 가격대 검색
 void searchStar(Product *p, int count); // 제품 별점 검색
 
